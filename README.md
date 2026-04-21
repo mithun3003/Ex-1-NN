@@ -1,7 +1,7 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: MITHUN S</H3>
+<H3>ENTER YOUR REGISTER NO. : 212224240088</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
+<H3>21/04/2026</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
 
 ## AIM:
@@ -37,11 +37,58 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+
+```
+#import libraries
+from google.colab import files
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+
+#Read the dataset from drive
+df=pd.read_csv("/content/Churn_Modelling.csv")
+df
+
+df.isnull().sum()
+
+#check for duplication
+df.duplicated()
+
+print(df['CreditScore'].describe())
+
+df.info()
+
+df.drop(['Surname','Geography','Gender'],axis=1,inplace=True)
+df
+
+Scaler=MinMaxScaler()
+df1=pd.DataFrame(Scaler.fit_transform(df))
+df1
+
+X = df1.iloc[:, :-1].values
+print(X)
+
+y = df1.iloc[:,-1].values
+print(y)
+
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=0.2,random_state=25)
+
+print(X_train)
+print(len(X_train))
+
+print(X_test)
+print(len(X_test))
+
+```
 
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+
+![output 1](image-2.png)
+
+![output 2](image-3.png)
 
 
 ## RESULT:
